@@ -1,0 +1,3 @@
+Dostęp do dokumentacji Dokumentacja > com > company package-summary.html
+Dostęp do diagramu Dokumentacja > diagram
+Dostęp do kodu Saper > src/com/company 
