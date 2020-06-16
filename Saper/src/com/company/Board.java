@@ -79,15 +79,19 @@ public class Board extends JPanel implements MouseListener {
     /**nadpisana metoda klasy JComponent, rysowanie planszy, zmiana kolorw pol i numerow min wokol*/
     public void paintComponent(Graphics graphics){
 
+        // wypelnianie tla i rysowanie planszy 
         if(start==0) {
             graphics.setColor(Color.BLACK);
             graphics.fillRect(0, 0, 692, 800);
+            // ustawienie kolorow pol
             graphics.setColor(Color.DARK_GRAY);
             for (int i = 0; i < value; i++) {
                 for (int j = 0; j < value; j++) {
 
+                    //rysowanie planszy odpowiedniej do poziomu gry, rysowanie kwadracikow
                     if(difficultyLevel==1){
                         graphics.fillRect(132 + (54 * j), 200 + (54 * i), 50, 50);
+                        //tutaj nastepuje przypisanie obszaru pojedynczego pola do obiektu klasy Field, umozliwia operacje na obiekcie i latwej zmiany kolorow obszaru
                         tile[i][j] = new Field(132 + (54 * j), 200 + (54 * i), 50, 50);
                     }
                     if(difficultyLevel==2){
@@ -102,6 +106,7 @@ public class Board extends JPanel implements MouseListener {
             }
             for (int i = 0; i < value; i++) {
                 for (int j = 0; j < value; j++) {
+                    //wybranie kolorow numerow informujacych o liczbie min wokol pola i ich rysowanie w kolorze tym samym, co kolory kwadratow
                     graphics.setColor(tile[i][j].numberColor);
 
                     if(difficultyLevel==1){
@@ -121,6 +126,7 @@ public class Board extends JPanel implements MouseListener {
         }
         if(start == 1){
 
+            //tutaj instrukcje dotycza rysowania juz podczas rozgrywki, zmiany kolorow pola po kliknieciu na nie odpowiednim przyciskiem myszki i zmiana koloru liczby min
             for (int i = 0; i < value; i++) {
                 for (int j = 0; j < value; j++) {
                     graphics.setColor(tile[i][j].rectangleColor);
@@ -128,6 +134,7 @@ public class Board extends JPanel implements MouseListener {
                         graphics.fillRect(132 + (54 * j), 200 + (54 * i), 50, 50);
                         if (!tile[i][j].isCovered) {
                             graphics.setColor(tile[i][j].numberColor);
+                            //ustawianie czcionki i rozmiaru, a potem rysowanie liczb
                             graphics.setFont(new Font("Arial", Font.BOLD, 25));
                             graphics.drawString(Integer.toString(integer[i][j]), 132 + (54 * j) + 19, 200 + (54 * i) + 33);
                         }
@@ -214,7 +221,7 @@ public class Board extends JPanel implements MouseListener {
         tile[x][y].numberColor = Color.BLACK;
         integer[x][y]=tile[x][y].minesAround;
 
-        this.repaint();
+        this.repaint(); //wywolywanie rysowania - zmiany kolorow pola i koloru liczby min
         uncoverSurroundings(x,y);
         click++;
     }
@@ -308,11 +315,12 @@ public class Board extends JPanel implements MouseListener {
             placeMine();
             fieldMinesNumber();
         }
-        if(SwingUtilities.isLeftMouseButton(e)) {
-            start = 1;
+        //warunek, co sie dzieje po kliknieciu lewego przycisku myszki na odpowiednim polu
+        if(SwingUtilities.isLeftMouseButton(e)) { 
+            start = 1; // dzieki zmianie tej wartosci na 1, rysowanie dalej polega za zmianie kolorow pol i kolorow liczby min
 
             System.out.println(e.getX() + " " + e.getY());
-            int clickedX = e.getX();
+            int clickedX = e.getX(); //pobieranie wspolrzednych po kilknieciu
             int clickedY = e.getY();
 
             for (int i = 0; i < value; i++) {
@@ -325,7 +333,7 @@ public class Board extends JPanel implements MouseListener {
                         }
                         uncoverField(i,j);
                         if(allUncovered()){
-                            /*zakonczenie rozgrywki w przypadku odkrycia wszystkich pol bez min*/
+                            /*zakonczenie rozgrywki w przypadku odkrycia wszystkich pol bez min, wyswietlenie okna dialogowego*/
                             JOptionPane.showMessageDialog(null,"You won", "Victory", JOptionPane.INFORMATION_MESSAGE);
                             System.exit(0);
                         }
@@ -343,6 +351,7 @@ public class Board extends JPanel implements MouseListener {
 
 
                     }
+                    //to jest mechanizm sprawiajacy, ze pierwsze pole nie zawiera miny tak, jak i pola wokol niego
                     if(tile[i][j].contains(clickedX, clickedY) && tile[i][j].isMine && !tile[i][j].isFlag && click == 0){
                         findAnotherPlace(i,j);
                         freeTiles(i,j);
@@ -351,7 +360,7 @@ public class Board extends JPanel implements MouseListener {
                 }
             }
         }
-        if(SwingUtilities.isRightMouseButton(e)){
+        if(SwingUtilities.isRightMouseButton(e)){ //co sie dzieje po kliknieciu prawego przycisku myszki, flagowanie
             start = 1;
             System.out.println(e.getX() + " " + e.getY());
             int clickedX = e.getX();
