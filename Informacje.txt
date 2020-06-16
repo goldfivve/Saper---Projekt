@@ -6,11 +6,14 @@ Funkcjonalności:
 • Interaktywne plansze, reagujące na kliknięcia lewego i prawego przycisku myszki: odsłanianie i flagowanie pól
 • Wyświetlanie liczby min wokół pola po jego odsłonięciu 
 • Zagwarantowany brak miny na pierwszym odsłoniętym polu, a także na polach z nim sąsiadujących
-• Automatyczny powrót do menu po odsłonięciu wszystkich pól niezawierających min lub kliknięciu na minę
+• Po zakończeniu  gry, wyświetla się odpowiednie okno dialogowe z informacją o wygranej lub przegranej
 
 Opis działania
-Po uruchomieniu gry wyświetla się okno z 4 przyciskami „Button”, „Medium”, „Advanced” oraz „Exit” oraz napis „Minesweeper”. Ostatni przycisk zamyka okno. Po kliknięciu pierwszego przycisku otwiera się okno z planszą o wymiarach 8x8, której stan zmienia się wraz z aktywnością użytkownika związaną z użyciem myszki, rozgrywkę zamyka odsłonięcie pola z miną lub odkrycie wszystkich pól bez min. Pozostałe przyciski generują kolejno plansze o wymiarach na wyższych poziomach trudności. 
+Po uruchomieniu gry wyświetla się okno z 4 przyciskami „Button”, „Medium”, „Advanced” oraz „Exit” oraz napis „Minesweeper”. Ostatni przycisk zamyka okno. Po kliknięciu pierwszego przycisku otwiera się okno z planszą o wymiarach 8x8, której stan zmienia się wraz z aktywnością użytkownika związaną z użyciem myszki, rozgrywkę zamyka odsłonięcie pola z miną lub odkrycie wszystkich pól bez min. 
+Pozostałe przyciski generują kolejno plansze o wymiarach na wyższych poziomach trudności. 
 
 Dostęp do dokumentacji Dokumentacja > com > company package-summary.html
 Dostęp do diagramu Dokumentacja > diagram
 Dostęp do kodu Saper > src/com/company 
+
+Autor: Dominika Kmiecik
